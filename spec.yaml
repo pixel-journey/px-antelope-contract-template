@@ -1,0 +1,7 @@
+name: px-antelope-contract-template
+track: contract-examples
+trust: educational-reference
+tested: [invariants/ping.ts, client/ping-action.ts]
+not_run: [cdt-cpp, docker, broadcast]
+placeholder_account: pxexample
+rule: missing row starts at 1; uint32 max is refused

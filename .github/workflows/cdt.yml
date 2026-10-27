@@ -1,0 +1,11 @@
+name: cdt
+
+on:
+  workflow_dispatch:
+
+jobs:
+  compile:
+    uses: pixel-journey/px-ci-cdt-deterministic-compiler/.github/workflows/cdt-deterministic.yml@main
+    with:
+      source: contracts/pxexample/pxexample.cpp
+      contract: pxexample
