@@ -1,28 +1,35 @@
 # px-antelope-contract-template
 
-Layout for a PxDev Tier B micro-contract. Private. Not a template repository flag on GitHub yet. Nothing here is deployed.
+Scaffold for a Pixel Journey Tier B quest. This repository is **not** one of the 210 catalog entries.
 
-## What is true
+Copy it when a quest needs its own WASM. Tier A quests do not: they orchestrate `eosio.token`, `atomicassets`, `orng.wax`, or a DEX and ship only a WharfKit client.
 
-- `nextPings(null)` is 1. `nextPings(4)` is 5. `nextPings(4294967295)` is refused.
-- `client/ping-action.ts` returns an unsigned action body. It does not import WharfKit and it does not broadcast.
-- `contracts/pxexample/pxexample.cpp` is the same counter in C++. `cdt-cpp` was not run. There is no wasm and no abi in this repo.
-- `.github/workflows/cdt.yml` calls `px-ci-cdt-deterministic-compiler` on `workflow_dispatch` only. That call was not dispatched.
-- `pxexample` is not a WAX account.
+## Tree
 
-## Run the rules
-
-```bash
-npm test
+```
+contracts/src/px_template.cpp
+contracts/include/
+contracts/ricardian/
+tests/invariants.spec.ts
+client/wharfkit-demo.ts
+.github/workflows/px-contract-build.yml
 ```
 
-That runs `node --test` on the TypeScript rules. It does not download CDT.
+## Rules
 
-## Layout
+See `CONTRACT-VAULT-STANDARD.md` in [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault). Short version:
 
-| Path | Role |
-| --- | --- |
-| `contracts/pxexample/pxexample.cpp` | Contract source. Uncompiled. |
-| `invariants/` | Rules that were executed. |
-| `client/` | Unsigned action bodies. |
-| `.github/workflows/cdt.yml` | Manual compile. Not run. |
+1. Check `get_first_receiver()` on every token notify. Return when `from == get_self()`.
+2. Multiply in `__int128`, then divide. `MAX_AMOUNT` is `2^62 - 1`.
+3. The contract does not pay RAM unless a deposit covers it.
+4. Inline action names are constants.
+5. Entropy is `requestrand` now and `randnotify` later. Legacy `receiverand` calls `require_auth(orng.wax)`.
+6. `setassetdata` writes the full mutable map.
+7. A sell tax must not change the quantity a DEX pool is notified for.
+8. Pause leaves an `eosio.msig` path. `setpaused` is authorized by the contract account, so a 2-of-3 msig can still unpause.
+
+## Compile
+
+Pinned image `ghcr.io/antelopeio/cdt:4.1.0`. Do not install CDT on the runner. The on-chain account is chosen at deploy and is not this repo name.
+
+Private while the vector suite is open. MIT when published.
