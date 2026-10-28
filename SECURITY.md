@@ -9,6 +9,15 @@ Use this list when reviewing or extending any example in the organization.
 - Admin paths must verify the configured admin, not merely `get_self()` after the first configuration.
 - Notification handlers must check `get_first_receiver()` and return early on outgoing transfers.
 
+```cpp
+// Owner-only unstake
+require_auth(owner);
+check(owner == row.owner, "not the owner");
+
+// Notification hygiene
+if (get_first_receiver() != get_self() || from == get_self()) return;
+```
+
 ## Inputs
 
 - Reject negative quantities where a negative value is meaningless.
@@ -17,12 +26,24 @@ Use this list when reviewing or extending any example in the organization.
 - Bound string lengths and vector sizes.
 - Refuse values that would overflow the destination type (uint32, uint64, int64 asset amount).
 
+```cpp
+check(quantity.amount > 0, "must be positive");
+check(quantity.symbol == symbol("WAX", 8), "wrong symbol");
+check(value <= 1000000, "exceeds cap");
+```
+
 ## Arithmetic
 
 - Prefer checked operations or explicit bounds before multiply/divide.
 - Be careful with signed/unsigned conversions.
 - Asset amounts are int64; stay well below `2^62 - 1`.
 - Tax, fee, and reward calculations must not wrap.
+
+```cpp
+// Wide intermediate for tax
+int128_t tax = (int128_t)amount * bps / 10000;
+check(tax >= 0 && tax < amount, "bad tax");
+```
 
 ## State
 
