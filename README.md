@@ -8,6 +8,7 @@ This repository is the scaffold. It is not one of the named patterns in the vaul
 
 - `nextPings(null)` is 1. `nextPings(4)` is 5. `nextPings(4294967295)` is refused.
 - `shouldHandleNotify` returns true only when the contract is the first receiver and the transfer is not outgoing from itself.
+- Admin may pause. Admin or `eosio.msig` may unpause. Non-admin cannot pause.
 - `client/ping-action.ts` returns an unsigned action body. It does not import WharfKit and it does not broadcast.
 - `contracts/pxexample/pxexample.cpp` is the same counter in C++. `cdt-cpp` was not run. There is no wasm and no abi.
 - `.github/workflows/cdt.yml` calls the deterministic compiler on `workflow_dispatch` only. That call was not dispatched.
@@ -24,11 +25,14 @@ That runs `node --test` on the TypeScript rules. It does not download CDT.
 
 | Path | Role |
 | --- | --- |
-| `invariants/` | Rules that were executed (ping counter, notification hygiene). |
+| `invariants/` | Rules that were executed (ping, notification hygiene, pause). |
 | `contracts/pxexample/pxexample.cpp` | Uncompiled C++ for the ping counter. |
 | `client/ping-action.ts` | Unsigned action body. |
 | `SECURITY.md` | Shared checklist. |
 | `INTEGER-SAFETY.md` | Notes on bounds and overflow. |
+| `AUTHORIZATION.md` | Owner, admin, and notification patterns. |
+| `PAUSE-RECOVERY.md` | Pause and msig recovery. |
+| `RAM-PAYER.md` | Who pays for new rows. |
 | `.github/workflows/cdt.yml` | Manual compile. Not run. |
 
 ## Extra file
