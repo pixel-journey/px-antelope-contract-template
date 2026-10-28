@@ -33,6 +33,7 @@ That runs `node --test` on the TypeScript rules. It does not download CDT.
 | `AUTHORIZATION.md` | Owner, admin, and notification patterns. |
 | `PAUSE-RECOVERY.md` | Pause and msig recovery. |
 | `RAM-PAYER.md` | Who pays for new rows. |
+| `ACCOUNT-NAMES.md` | Valid account name rules. |
 | `.github/workflows/cdt.yml` | Manual compile. Not run. |
 
 ## Extra file
