@@ -23,3 +23,9 @@ test("admin or msig may unpause when paused", () => {
 test("cannot unpause when already unpaused", () => {
   assert.equal(canUnpause(state, "guardian"), false);
 });
+
+test("second pause by admin still leaves paused true", () => {
+  const once = applyPause(state, "guardian");
+  const twice = applyPause(once, "guardian");
+  assert.equal(twice.paused, true);
+});
