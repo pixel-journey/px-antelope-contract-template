@@ -14,9 +14,17 @@ test("uint32 max is refused", () => {
   assert.throws(() => nextPings(PING_CAP), /ping cap/);
 });
 
+test("one below the cap is accepted", () => {
+  assert.equal(nextPings(PING_CAP - 1), PING_CAP);
+});
+
 test("zero and fractions are refused", () => {
   assert.throws(() => nextPings(0), /bad count/);
   assert.throws(() => nextPings(1.5), /bad count/);
+});
+
+test("negative count is refused", () => {
+  assert.throws(() => nextPings(-1), /bad count/);
 });
 
 test("names are 1 to 12 antelope characters", () => {
