@@ -13,3 +13,7 @@ test("ignores when first receiver is another contract", () => {
 test("ignores outgoing transfer from self", () => {
   assert.equal(shouldHandleNotify("mycontract", "mycontract", "mycontract"), false);
 });
+
+test("ignores when both receiver and from are wrong", () => {
+  assert.equal(shouldHandleNotify("other", "mycontract", "mycontract"), false);
+});
