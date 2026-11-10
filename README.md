@@ -1,12 +1,28 @@
 # px-antelope-contract-template
 
 > **Trust label:** private Tier B scaffold  
-> **Status:** Tested TypeScript invariants + uncompiled C++ sketches  
+> **Status:** Tested TypeScript invariants + C++ sketch  
 > **Vault:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
 
 Layout for a small Antelope contract example. **Private. Nothing here is deployed.**
 
 This repository is the **scaffold**. It is not one of the named patterns in the vault’s 210-quest list.
+
+---
+
+## Compile path (production)
+
+The C++ in `contracts/pxexample/pxexample.cpp` is mirrored under [wax-contract-compiler](https://github.com/pixel-journey/wax-contract-compiler) as `contracts/pxexample/`.
+
+That repo is the private production pipeline (Docker CDT → audit → `compiled-contracts/`). After its **Compile Contracts** workflow succeeds for `pxexample`, wasm/abi live there under `compiled-contracts/pxexample/`.
+
+This template still treats local C++ as a sketch until you copy those binaries in or record a successful run. Do not claim a wasm **in this repo** without a committed binary or a linked run.
+
+| Repo | Role |
+| --- | --- |
+| **This repo** | TypeScript rules + scaffold + unsigned action body |
+| **wax-contract-compiler** | Production CDT build of `pxexample` |
+| **px-ci-cdt-deterministic-compiler** | Educational reusable workflow (not the day-to-day pipeline) |
 
 ---
 
@@ -31,8 +47,8 @@ This repository is the **scaffold**. It is not one of the named patterns in the 
 - `shouldHandleNotify` returns true only when the contract is the first receiver and the transfer is not outgoing from itself.
 - Admin may pause. Admin or `eosio.msig` may unpause. Non-admin cannot pause.
 - `client/ping-action.ts` returns an **unsigned** action body. It does not import WharfKit and it does not broadcast.
-- `contracts/pxexample/pxexample.cpp` is the same counter in C++. **`cdt-cpp` was not run. There is no wasm and no abi.**
-- `.github/workflows/cdt.yml` calls the deterministic compiler on `workflow_dispatch` only. **That call was not dispatched.**
+- `contracts/pxexample/pxexample.cpp` matches the production mirror. **This repo does not store a wasm.** Look at `wax-contract-compiler` after CI for binaries.
+- `.github/workflows/cdt.yml` calls the educational deterministic compiler on `workflow_dispatch` only. **That call was not dispatched.**
 
 ---
 
@@ -51,11 +67,11 @@ Runs `node --test` on the TypeScript rules. Does **not** download CDT.
 | Path | Role |
 | --- | --- |
 | `invariants/` | Rules that were executed (ping, notification hygiene, pause) |
-| `contracts/pxexample/pxexample.cpp` | Uncompiled C++ for the ping counter |
+| `contracts/pxexample/pxexample.cpp` | Ping counter C++ (mirrored for production compile) |
 | `contracts/src/px_template.cpp` | Uncompiled pause sketch — not read by `npm test` |
 | `client/ping-action.ts` | Unsigned action body |
 | `SECURITY.md` + companion notes | Shared engineering checklists |
-| `.github/workflows/cdt.yml` | Manual compile — not run |
+| `.github/workflows/cdt.yml` | Manual educational compile — not run |
 
 ---
 
@@ -69,10 +85,10 @@ Pass rules (from vault):
 
 1. One repo, one rule that `npm test` runs (template carries the starter set).
 2. An unsigned action body is not a broadcast.
-3. C++ without wasm from the pinned workflow is uncompiled.
-4. Do not describe a sketch as an implementation.
+3. C++ without a verified binary is uncompiled **here**.
+4. Do not describe a sketch as a deployed implementation.
 5. Stay private.
 
 ---
 
-*Last updated: 2026-10-29 — Deep educational pass: walkthrough doc + expanded README.*
+*Last updated: 2026-11-10 — Linked production compile path for pxexample.*
