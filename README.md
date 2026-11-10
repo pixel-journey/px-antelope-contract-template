@@ -1,7 +1,7 @@
 # px-antelope-contract-template
 
 > **Trust label:** private Tier B scaffold  
-> **Status:** Tested TypeScript invariants; production wasm for `pxexample`  
+> **Status:** Tested TypeScript invariants; production wasm for `pxexample` + `pxnotify`  
 > **Vault:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
 
 Layout for a small Antelope contract example. **Private. Nothing here is deployed.**
@@ -12,25 +12,18 @@ This repository is the **scaffold**. It is not one of the named patterns in the 
 
 ## Compile path (production)
 
-The C++ in `contracts/pxexample/pxexample.cpp` is mirrored under [wax-contract-compiler](https://github.com/pixel-journey/wax-contract-compiler) as `contracts/pxexample/`.
+| TypeScript rule | Production contract | Run | WASM SHA256 |
+| --- | --- | --- | --- |
+| `invariants/ping.ts` | [`pxexample`](https://github.com/pixel-journey/wax-contract-compiler/tree/main/contracts/pxexample) | [22](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42819559097) | `dd1b7bf5526e73526707c3f04e7170287b6d7d54e7dbb18a4ba1ec9bd3e8ccdb` |
+| `invariants/notify.ts` | [`pxnotify`](https://github.com/pixel-journey/wax-contract-compiler/tree/main/contracts/pxnotify) | [25](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42823050242) | `ab68a840ee266711ef7e71910203355bc07df20373b18f1b95120d4c4464a8ab` |
+| `invariants/pause.ts` (also full lab) | [`pxguard`](https://github.com/pixel-journey/wax-contract-compiler/tree/main/contracts/pxguard) | [24](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42821960554) | `da54a7088823f5f0a6edc0a690c64b825efc4739253da636806997677f7b6f6a` |
 
-**Verified binary (not in this repo):**
-
-| Item | Value |
-| --- | --- |
-| Run | [Compile Contracts #22](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42819559097) |
-| Path | `compiled-contracts/pxexample/` |
-| CDT | `waxteam/cdt:v5.0.3wax02-v4.1.0` |
-| WASM SHA256 | `dd1b7bf5526e73526707c3f04e7170287b6d7d54e7dbb18a4ba1ec9bd3e8ccdb` |
-| ABI SHA256 | `63b581a59ae636424a0c97e490b4f8b32cc4eef4960fd2115179043fd8cf3327` |
-| Audit | 0 errors / 0 warnings |
-
-This template still does **not** store a wasm. Binaries live only in the production compiler. Not claimed deployed.
+CDT pin on all three: `waxteam/cdt:v5.0.3wax02-v4.1.0`. Audit 0/0. **Not deployed.** This template does **not** store wasm files.
 
 | Repo | Role |
 | --- | --- |
 | **This repo** | TypeScript rules + scaffold + unsigned action body |
-| **wax-contract-compiler** | Production CDT build of `pxexample` (verified) |
+| **wax-contract-compiler** | Production CDT builds |
 | **px-ci-cdt-deterministic-compiler** | Educational reusable workflow (not the day-to-day pipeline) |
 
 ---
@@ -77,7 +70,7 @@ Runs `node --test` on the TypeScript rules. Does **not** download CDT.
 | --- | --- |
 | `invariants/` | Rules that were executed (ping, notification hygiene, pause) |
 | `contracts/pxexample/pxexample.cpp` | Ping counter C++ (mirrored; production-compiled) |
-| `contracts/src/px_template.cpp` | Uncompiled pause sketch — not read by `npm test` |
+| `contracts/src/px_template.cpp` | Uncompiled pause sketch — prefer production `pxguard` |
 | `client/ping-action.ts` | Unsigned action body |
 | `SECURITY.md` + companion notes | Shared engineering checklists |
 | `.github/workflows/cdt.yml` | Manual educational compile — not run |
@@ -100,4 +93,4 @@ Pass rules (from vault):
 
 ---
 
-*Last updated: 2026-11-10 — pxexample wasm verified (run 22).*
+*Last updated: 2026-11-10 — pxexample (22), pxguard (24), pxnotify (25).*
