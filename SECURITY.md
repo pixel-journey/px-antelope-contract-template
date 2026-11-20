@@ -88,4 +88,4 @@ That `tax < amount` check is the **wallet** rule (the recipient shrinks). A DEX 
 
 ## What this file is not
 
-It is not a substitute for the specific example's test and EDUCATION.md. It is the shared reminder of the checks that should appear in every contract example. Path: [LEARNING-PATH](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/LEARNING-PATH.md).
+It is not a substitute for the specific example's test and EDUCATION.md. It is the shared reminder of the checks that should appear in every contract example. Path: `px-contract-examples-vault` (private; not this public course).

@@ -20,7 +20,7 @@ Run `npm test` before reading EDUCATION answers. The C++ under `contracts/` is a
 
 ## Compiler honesty
 
-The workflow file in this repo is not a recorded wasm. The educational CI repo has **two** image pins and zero recorded compiles: [px-ci-cdt-deterministic-compiler](https://github.com/pixel-journey/px-ci-cdt-deterministic-compiler). Builds that actually exist live in [wax-contract-compiler](https://github.com/pixel-journey/wax-contract-compiler).
+The workflow file in this repo is not a recorded wasm. The educational CI repo has **two** image pins and zero recorded compiles: `px-ci-cdt-deterministic-compiler` (private; not this public course). Builds that actually exist live in `wax-contract-compiler` (private; not this public course).
 
 ## Common mistakes
 
@@ -32,4 +32,4 @@ The workflow file in this repo is not a recorded wasm. The educational CI repo h
 
 ## Related
 
-[EDUCATION.md](EDUCATION.md) · [SECURITY.md](SECURITY.md) · [learning path](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/LEARNING-PATH.md)
+[EDUCATION.md](EDUCATION.md) · [SECURITY.md](SECURITY.md) · `px-contract-examples-vault` (private; not this public course)

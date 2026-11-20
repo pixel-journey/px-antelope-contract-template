@@ -5,9 +5,9 @@
 | [docs.wax.io](https://docs.wax.io/build/) | Contract build and action format |
 | [eosio.contracts](https://github.com/eosio/eosio.contracts) | `eosio.token` transfer notify; `eosio.msig` as a recovery actor |
 | [Antelope CDT](https://github.com/AntelopeIO/cdt) | `cdt-cpp` |
-| [wax-contract-compiler](https://github.com/pixel-journey/wax-contract-compiler) | Where `pxexample`, `pxnotify`, and `pxguard` were actually compiled |
+| `wax-contract-compiler` (private; not this public course) | Where `pxexample`, `pxnotify`, and `pxguard` were actually compiled |
 
-CDT tag used by that pipeline: `waxteam/cdt:v5.0.3wax02-v4.1.0`. The educational workflow repo pins a **different** tag and has not recorded a compile. See [px-ci-cdt-deterministic-compiler](https://github.com/pixel-journey/px-ci-cdt-deterministic-compiler). Do not answer "which image?" with one string.
+CDT tag used by that pipeline: `waxteam/cdt:v5.0.3wax02-v4.1.0`. The educational workflow repo pins a **different** tag and has not recorded a compile. See `px-ci-cdt-deterministic-compiler` (private; not this public course). Do not answer "which image?" with one string.
 
 ## What the tests lock, and what they are not
 
@@ -19,4 +19,4 @@ CDT tag used by that pipeline: `waxteam/cdt:v5.0.3wax02-v4.1.0`. The educational
 
 Checklist of facts later labs must not collapse: [SECURITY.md](SECURITY.md).
 
-Curriculum: [LEARNING-PATH](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/LEARNING-PATH.md).
+Curriculum: `px-contract-examples-vault` (private; not this public course).

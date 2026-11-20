@@ -1,19 +1,21 @@
 # Antelope contract template (TypeScript rules + production mirrors)
 
 > **Role:** Scaffold for small WAX/Antelope education contracts  
-> **Vault:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
+> **Vault:** `px-contract-examples-vault` (private; not this public course)
 
 **Goal:** Layout for a micro-contract example with **executed TypeScript invariants**, unsigned client action body, and pointers to **production wasm** in `wax-contract-compiler`. **Nothing in this repo is deployed.**
 
 ---
 
-## Compile path (production)
+## Compile path (private build record)
 
-| TypeScript rule | Production contract | Run | WASM SHA256 |
+These wasm files are **not** in this repository. A private compiler tree recorded them. They are **not deployed**. The course is `npm test` here.
+
+| TypeScript rule | Private mirror name | Recorded run | WASM SHA256 |
 | --- | --- | --- | --- |
-| `invariants/ping.ts` | [`pxexample`](https://github.com/pixel-journey/wax-contract-compiler/tree/main/contracts/pxexample) | [22](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42819559097) | `dd1b7bf5526e73526707c3f04e7170287b6d7d54e7dbb18a4ba1ec9bd3e8ccdb` |
-| `invariants/notify.ts` | [`pxnotify`](https://github.com/pixel-journey/wax-contract-compiler/tree/main/contracts/pxnotify) | [25](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42823050242) | `ab68a840ee266711ef7e71910203355bc07df20373b18f1b95120d4c4464a8ab` |
-| `invariants/pause.ts` | [`pxguard`](https://github.com/pixel-journey/wax-contract-compiler/tree/main/contracts/pxguard) | [24](https://github.com/pixel-journey/wax-contract-compiler/actions/runs/42821960554) | `da54a7088823f5f0a6edc0a690c64b825efc4739253da636806997677f7b6f6a` |
+| `invariants/ping.ts` | `pxexample` | 22 | `dd1b7bf5526e73526707c3f04e7170287b6d7d54e7dbb18a4ba1ec9bd3e8ccdb` |
+| `invariants/notify.ts` | `pxnotify` | 25 | `ab68a840ee266711ef7e71910203355bc07df20373b18f1b95120d4c4464a8ab` |
+| `invariants/pause.ts` | `pxguard` | 24 | `da54a7088823f5f0a6edc0a690c64b825efc4739253da636806997677f7b6f6a` |
 
 CDT pin: `waxteam/cdt:v5.0.3wax02-v4.1.0`. Audit 0/0. **Not deployed.** This template does **not** store wasm files.
 
